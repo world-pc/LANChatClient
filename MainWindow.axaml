@@ -4,6 +4,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="LANChatClient.MainWindow"
-        Title="LANChatClient">
-    Welcome to Avalonia!
+        Title="LANChatClient"
+        Height="300"
+        Width="600">
+    <StackPanel>
+
+        <TextBlock Text="Welcome to LAN Chat Client" Margin="10"/>
+
+        <StackPanel Orientation="Horizontal">
+
+            <ListBox Name="chatlog" Height="200" Width="400" />
+            <Border Width="1" Background="Gray" />
+            <ListBox Name="lobby" Height="200">
+                <TextBlock Text="user a" />
+                <TextBlock Text="user b" />
+                <TextBlock Text="user c" />
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBox Name="usr_msg_input" MinWidth="200" />
+            <Button Content="send" />
+        </StackPanel>
+
+    </StackPanel>
 </Window>
