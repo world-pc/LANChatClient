@@ -14,7 +14,7 @@
 
         <StackPanel Orientation="Horizontal">
 
-            <ListBox Name="chatlog" Height="200" Width="400" />
+            <ListBox Name="chatlog" Height="200" MinWidth="500" />
             <Border Width="1" Background="Gray" />
             <ListBox Name="lobby" Height="200">
                 <TextBlock Text="user a" />
