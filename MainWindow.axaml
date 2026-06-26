@@ -6,7 +6,8 @@
         x:Class="LANChatClient.MainWindow"
         Title="LANChatClient"
         Height="300"
-        Width="600">
+        Width="600"
+        Opened="MainWindow_Opened">
     <StackPanel>
 
         <TextBlock Text="Welcome to LAN Chat Client" Margin="10"/>
@@ -23,8 +24,8 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-            <TextBox Name="usr_msg_input" MinWidth="200" />
-            <Button Content="send" />
+            <TextBox Name="usrMsgInput" KeyDown="UsrMsgInput_KeyDown" MinWidth="200" />
+            <Button Content="send" Click="SendButton_Click" />
         </StackPanel>
 
     </StackPanel>

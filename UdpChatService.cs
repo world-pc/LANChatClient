@@ -23,6 +23,9 @@ public class UdpChatService {
         }
     }
 
-    public void SendMessage(string given_msg) {
+    public void SendMessageToAll(string givenMsg) {
+        byte[] data = Encoding.UTF8.GetBytes(givenMsg);
+
+        _sender.Send(data, data.Length, "255.255.255.255", 9000);
     }
 }
