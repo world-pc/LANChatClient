@@ -13,9 +13,13 @@ public partial class MainWindow : Window {
         InitializeComponent();
 
         _chatService = new UdpChatService(9000);
+
+        //listen for incoming messages
         _ = _chatService.StartListeningAsync(message => {
             chatlog.Items.Add(message);           
         });
+
+        //broadcast my IP Addr every 2min to update our lobbies.
     }
 
     private void MainWindow_Opened(object? sender, EventArgs e) {
