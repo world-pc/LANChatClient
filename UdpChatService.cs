@@ -14,6 +14,8 @@ public class UdpChatService {
     public UdpChatService(int listeningPort) {
         _listener = new UdpClient(listeningPort);
 
+        _statusListener = new UdpClient(9001);
+
         _sender = new UdpClient();
 
         _statusSender = new UdpClient();
@@ -28,7 +30,7 @@ public class UdpChatService {
 
     public async Task StartLobbyListen(Action<string> onLobbyNotif) {
         while(true) {
-            UdpReceiveResult result = await _listener.ReceiveAsync();
+            UdpReceiveResult result = await _statusListener.ReceiveAsync();
             onLobbyNotif(Encoding.UTF8.GetString(result.Buffer));
         }
     }
@@ -47,7 +49,7 @@ public class UdpChatService {
         }
     }
 
-    private void broadcastThatImOnline() {
+    public void BroadcastIdent(object? state) {
         byte[] data = Encoding.UTF8.GetBytes(getLocalIPAddress());
         _statusSender.Send(data, "255.255.255.255", 9001);
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Input;
@@ -8,6 +9,8 @@ namespace LANChatClient;
 public partial class MainWindow : Window {
     
     private UdpChatService _chatService;
+
+    private System.Threading.Timer _timer;
 
     public MainWindow() {
         InitializeComponent();
@@ -20,6 +23,12 @@ public partial class MainWindow : Window {
         });
 
         //broadcast my IP Addr every 2min to update our lobbies.
+        _timer = new System.Threading.Timer(_chatService.BroadcastIdent, null, 0, 5000);
+
+        //listen for lobby updates
+        _ = _chatService.StartLobbyListen(message => {
+            lobby.Items.Add(message);
+        });
     }
 
     private void MainWindow_Opened(object? sender, EventArgs e) {
