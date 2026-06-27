@@ -28,4 +28,12 @@ public class UdpChatService {
 
         _sender.Send(data, data.Length, "255.255.255.255", 9000);
     }
+
+    public string getLocalIPAddress() {
+        using(Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp)) {
+            socket.Connect("8.8.8.8", 65530);
+            IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+            return endPoint?.Address.ToString() ?? "Unknown";
+        }
+    }
 }
